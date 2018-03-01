@@ -1,9 +1,9 @@
 # redux_todoList
 用redux跑一下官网的todolist demo
 
-## state数据结构
+## 第一步确定state的数据结构
 
-1.最近看了很多redux的文档，对redux的一些概念朱健有了自己的一些理解，在使用redux进行组件开发的时候，首先需要根绝业务，对唯一的state的结构进行构建
+1.最近看了很多redux的文档，对redux的一些概念有了自己的一些理解，在使用redux进行组件开发的时候，首先需要根绝业务，对唯一的state的结构进行构建
 例如本例中，add添加todo待办项，toggle切换todo待办项的状态，delete对todo待办项进行删除，filter对todo待办项进行筛选，所以可能的state的结构为
 
 ```
@@ -24,8 +24,10 @@
     filter: 'all' // 对todos待办项列表的过滤条件
   }
 ```
-## 文档目录
+## 第二步新建文档目录
 ### 使用create-react-app脚手架，基本的工程结构就是：
+
+actions,reducers,containers,components这四个文件夹先建好
 
 ```
   -actions
@@ -73,10 +75,29 @@
   
   3)于是整个工程的子组件都可以共享context中的store，也就可以使用store提供的getState，dispatch和subscribe方法
   
-### redux 和 react-redux
+### 第三步使用redux 和 react-redux
 
 ```
   import {conncet} from 'react-redux' // 高阶函数对纯组件进行封装的conncet方法
   import {Provider} from 'react-redux' // 提供context的父容器共享store
   import {createStore} from 'redux' // 接收reducer创建store
 ```
+#### 基本的原则就是：
+
+1.如果需要复用的组件，最好使用纯函数的写法写到components中，这样它不包含任何业务逻辑，只根据props渲染视图
+
+2.需要复用的组件写入containers中，使用conncet的高阶函数，写入输入输出
+  
+  1） mapStateToProps顾名思义，也就是将全局唯一的store中的state的数据和纯函数组件的props属性建立关系映射
+  
+  ```
+    import {connect} from 'react-redux'
+    import PureComponents from '../components/PureComponents'
+    
+    export default connect(
+      mapStateToProps, // store中state对PureComponents的输入
+      mapDispatchToProps // store中state对PureComponents的输出
+    )(PureComponents)
+    
+  ```
+我的理解就是，你在PureComponents组件中的输入，就是通过mapStateToProps传入store中定义好的state的某个属性；而PureComponents组件中用户通过action触发dispatch，需要修改store中的state，所以这个就是PureComponents组件的输出
