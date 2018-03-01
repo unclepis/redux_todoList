@@ -8,11 +8,11 @@
 
 ```
   {
-    todos:[ // todos数组存储了所有待办项,其中的每一个对象是具体的待办项的状态，包括id（进行删除和切换），completed（完成状态），text（待办项内容）
+    todos:[ // todos数组存储了所有待办项,其中的每一个对象是具体的待办项的状态，
       {    
-        id:1,
-        text:'todo 1',
-        completed:false
+        id:1, // 包括id（进行删除和切换）
+        text:'todo 1', // text（待办项内容）
+        completed:false // completed（完成状态）
       },
       {
         id:2,
@@ -52,8 +52,11 @@
   
 2.reducers
   里面就是针对每个actions对应的响应，reducers里面根据用户的action行为可能对store中的state进行的修改，进行了业务分隔
+  
   1）index.js中使用了redux提供的combineReducers对各个reducer进行了整合
+  
   2）todo.js是针对state中对todos数组的修改
+  
   3）filter.js是针对state中对filter字段的修改
   
 3.containers
@@ -63,8 +66,12 @@
   负责视图显示的纯组件
   
 5.index.js 
-  整个工程的入口文件，也就是使用ReactDOM.render方法把组件渲染到dom中。它使用react-redux提供的Provider提供了一个父容器，将生成的store放入context
-  上下文，于是整个工程的子组件都可以共享context中的store，也就可以使用store提供的getState，dispatch和subscribe方法
+
+  1)整个工程的入口文件，也就是使用ReactDOM.render方法把组件渲染到dom中。
+  
+  2)它使用react-redux提供的Provider提供了一个父容器，将生成的store放入context上下文
+  
+  3)于是整个工程的子组件都可以共享context中的store，也就可以使用store提供的getState，dispatch和subscribe方法
   
 ### redux 和 react-redux
 
