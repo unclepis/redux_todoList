@@ -29,11 +29,11 @@
 
 ```
   -actions
-  -index.js 所有的actions
+  -actions.js 所有的actions
 -reducers
   -todo.js
   -filter.js
-  -index.js
+  -reducers.js
 -containers
   -TodoFilter.jsx
   -TodoInput.jsx
