@@ -100,4 +100,6 @@ actions,reducers,containers,components这四个文件夹先建好
     )(PureComponents)
     
   ```
-我的理解就是，你在PureComponents组件中的输入，就是通过mapStateToProps传入store中定义好的state的某个属性；而PureComponents组件中用户通过action触发dispatch，需要修改store中的state，所以这个就是PureComponents组件的输出
+`我的理解就是`：
+在PureComponents组件中的输入，就是通过mapStateToProps传入store中定义好的state的某个属性；
+而PureComponents组件中用户通过action触发dispatch，需要修改store中的state，所以这个就是PureComponents组件的输出
