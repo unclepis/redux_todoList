@@ -1,17 +1,15 @@
 export const todos = (state = [], action) => {
+
     switch (action.type) {
         case 'add_item':
             return [
                 ...state,
-                {
-                    id: action.id,
-                    text: action.text,
-                    completed: false
-                }
+                action.payload
             ]
+
         case 'toggle_item':
             return state.map(todo => {
-                if (todo.id === action.id) {
+                if (todo.id === action.payload) {
                     return {
                         ...todo,
                         completed: !todo.completed
@@ -20,10 +18,21 @@ export const todos = (state = [], action) => {
                     return todo
                 }
             })
+
         case 'delete_item':
             return state.filter(todo => {
-                return todo.id !== action.id
+                return todo.id !== action.payload
             })
+
+        case 'load_item':
+            if (JSON.parse(localStorage.getItem('state'))) {
+                return [
+                    ...state,
+                    ...JSON.parse(localStorage.getItem('state')).todos
+                ]
+            }
+            return state
+
         default:
             return state
     }
