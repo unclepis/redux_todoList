@@ -2,28 +2,42 @@ let itemIndex = 0;
 export const addItem = text => {
     return {
         type: 'add_item',
-        id: itemIndex++,
-        text
+        payload: {
+            completed: false,
+            id: itemIndex++,
+            text
+        }
     }
 }
 
 export const toggleItem = id => {
     return {
         type: 'toggle_item',
-        id
+        payload: id
     }
 }
 
 export const deleteItem = id => {
     return {
         type: 'delete_item',
-        id
+        payload: id
     }
 }
 
 export const filterItem = filter => {
     return {
         type: 'set_Filter',
-        filter
+        payload: filter
+    }
+}
+
+export const loadItem = (types) => { // localStorage做数据持久化
+    if (types === 'filter') {
+        return {
+            type: 'load_filter'
+        }
+    }
+    return {
+        type: 'load_item'
     }
 }
