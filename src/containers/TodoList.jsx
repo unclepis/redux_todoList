@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import TodoList from '../components/TodoList'
-import { toggleItem, deleteItem } from '../actions/actions'
+import { toggleItem, deleteItem, loadItem } from '../actions/actions'
 
 const filterList = (todos, filter) => {
     switch (filter) {
@@ -27,6 +27,9 @@ const mapDispatchToProps = dispatch => {
         },
         onToggle: (id) => {
             dispatch(toggleItem(id))
+        },
+        onLoad: () => {
+            dispatch(loadItem())
         }
     }
 }
